@@ -12,7 +12,7 @@ def run(data):
     # get all reserverd keywords
     for i in reserved_keywords:
         for j, k in enumerate(data):
-            if i == k:
+            if i in k:
                 keywords_in_data.append(i)
     
     # get all the possible identifiers that are neither in
