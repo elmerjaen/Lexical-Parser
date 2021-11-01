@@ -1,4 +1,5 @@
 # Analizador léxico
+# by Louis Aguilar, Omar Flores, Elmer Jaén
 
 reserved_keywords = ['If', 'Else', 'Declare', 'Dim', 'Integer']
 operators = ['+', '-' , '*', '/', '=', '==', 'and', 'or', 'not']
@@ -40,7 +41,8 @@ def run(data):
 if __name__ == '__main__':
     data = []
     data2 = []
-    with open("./data.txt", "r", encoding="utf-8") as f:
+
+    with open("./data.txt", "r", encoding = "utf-8") as f:
         for line in f:
             data.append(line)
     
@@ -59,23 +61,9 @@ if __name__ == '__main__':
             else:
                 data2.append(string)
                 string = ""
-
+    
     tupla = run(data2)
     print('\nPalabras reservadas: ', tupla[0])
     print('\nIdentificadores: ', tupla[1])
     print('\nOperadores lógicos matemáticos: ', tupla[2])
     print(f'\nNúmeros enteros positivos y negativos: {tupla[3]}\n')
-    
-    # print("A continuación ingrese una cadena. Presione 'Esc' al terminar.")
-    # while True:
-    #     string = input()
-    #     if string == 'exit':
-    #         break
-    #     else:
-    #         data.append(string)
-
-    # string = ""
-    # for i, j in enumerate(data):
-    #     string += j + "\n"
-    # print('\nLa cadena introducida es:\n')
-    # print(string)
