@@ -23,13 +23,10 @@ def run(data):
         if i.isidentifier() == True and i not in reserved_keywords and i not in operators:
             identifiers_in_data.append(i)
     
-    for i in identifiers_in_data:
-        for j in i:
-            if j == "_":
-                identifiers_in_data.remove(i)
-    
-    for i in identifiers_in_data:
-        IDENTIFIERS.append(i)
+    for i, j in enumerate(identifiers_in_data):
+        if j[0] != "_":
+            # get position of the word
+            IDENTIFIERS.append(j)
 
     # get all the operators
     for i in operators:
