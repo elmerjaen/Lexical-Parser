@@ -1,4 +1,5 @@
 # Analizador léxico
+# by Louis Aguilar, Omar Flores, Elmer Jaén
 
 reserved_keywords = ['If', 'Else', 'Declare', 'Dim', 'Integer']
 operators = ['+', '-' , '*', '/', '=', '==', 'and', 'or', 'not']
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     data = []
     data2 = []
 
-    print("A continuación ingrese una cadena. Escriba 'exit' al terminar.\n")
+    print("\nA continuación ingrese una cadena. Escriba 'exit' al terminar.\n")
     while True:
         string = input()
         if string == 'exit':
