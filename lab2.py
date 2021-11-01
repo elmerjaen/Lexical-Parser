@@ -1,4 +1,4 @@
-# Analizador léxico
+# Analizador Léxico
 # by Louis Aguilar, Omar Flores, Elmer Jaén
 
 reserved_keywords = ['If', 'Else', 'Declare', 'Dim', 'Integer']
@@ -25,7 +25,6 @@ def run(data):
     
     for i, j in enumerate(identifiers_in_data):
         if j[0] != "_":
-            # get position of the word
             IDENTIFIERS.append(j)
 
     # get all the operators
@@ -35,13 +34,14 @@ def run(data):
                 operators_in_data.append(i)
     
     # get all the negative and positive numbers
-    for i in data:
-        # if it is a negative number
-        if len(i) == 2 and i[0] == '-':
-            numbers_in_data.append(int(i))
-        # if it is a positive number
-        if len(i) == 1 and i.isnumeric() == True:
-            numbers_in_data.append(int(i))
+    for i, j in enumerate(data):
+        if j == "" or j == "-":
+            continue
+        elif j.isnumeric() == True:
+            numbers_in_data.append(int(j))
+        # for negative numbers
+        elif j[0] == "-" and j[1].isnumeric():
+            numbers_in_data.append(int(j))
 
     return keywords_in_data, IDENTIFIERS, operators_in_data, numbers_in_data
 
