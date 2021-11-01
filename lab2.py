@@ -15,9 +15,10 @@ def run(data):
             if i == k:
                 keywords_in_data.append(i)
     
-    # get all the possible identifiers that are not reserved_keywords
+    # get all the possible identifiers that are neither in
+    # reserved_keywords nor in operators
     for i in data:
-        if i.isidentifier() == True and i not in reserved_keywords:
+        if i.isidentifier() == True and i not in reserved_keywords and i not in operators:
             identifiers_in_data.append(i)
 
     # get all the operators
@@ -41,7 +42,7 @@ if __name__ == '__main__':
     data = []
     data2 = []
 
-    print("A continuación ingrese una cadena. Presione 'Esc' al terminar.\n")
+    print("A continuación ingrese una cadena. Escriba 'exit' al terminar.\n")
     while True:
         string = input()
         if string == 'exit':
@@ -70,17 +71,3 @@ if __name__ == '__main__':
     print('\nIdentificadores: ', tupla[1])
     print('\nOperadores lógicos matemáticos: ', tupla[2])
     print(f'\nNúmeros enteros positivos y negativos: {tupla[3]}\n')
-    
-    # print("A continuación ingrese una cadena. Presione 'Esc' al terminar.")
-    # while True:
-    #     string = input()
-    #     if string == 'exit':
-    #         break
-    #     else:
-    #         data.append(string)
-
-    # string = ""
-    # for i, j in enumerate(data):
-    #     string += j + "\n"
-    # print('\nLa cadena introducida es:\n')
-    # print(string)
