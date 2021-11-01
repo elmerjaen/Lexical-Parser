@@ -48,8 +48,8 @@ if __name__ == '__main__':
         if string == 'exit':
             break
         else:
-            data.append(string)
-    
+            data.append(string+'\n')
+
     # extract word for word
     string = ""
     data_size = len(data)-1
@@ -58,10 +58,10 @@ if __name__ == '__main__':
         for k, m in enumerate(j):
             # delete " " and \n
             if m != " " and m != "\n":
-                string += m
-                # if it is the last character of the last line, append it
-                if i == data_size and k == j_size:
-                    data2.append(string)
+                if m == "\t":
+                    continue
+                else:
+                    string += m
             else:
                 data2.append(string)
                 string = ""
