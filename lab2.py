@@ -9,6 +9,7 @@ def run(data):
     operators_in_data = []
     numbers_in_data = []
     identifiers_in_data = []
+    IDENTIFIERS = []
     
     # get all reserverd keywords
     for i in reserved_keywords:
@@ -21,6 +22,14 @@ def run(data):
     for i in data:
         if i.isidentifier() == True and i not in reserved_keywords and i not in operators:
             identifiers_in_data.append(i)
+    
+    for i in identifiers_in_data:
+        for j in i:
+            if j == "_":
+                identifiers_in_data.remove(i)
+    
+    for i in identifiers_in_data:
+        IDENTIFIERS.append(i)
 
     # get all the operators
     for i in operators:
@@ -37,7 +46,7 @@ def run(data):
         if len(i) == 1 and i.isnumeric() == True:
             numbers_in_data.append(int(i))
 
-    return keywords_in_data, identifiers_in_data, operators_in_data, numbers_in_data
+    return keywords_in_data, IDENTIFIERS, operators_in_data, numbers_in_data
 
 if __name__ == '__main__':
     data = []
