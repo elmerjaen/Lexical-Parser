@@ -40,9 +40,14 @@ def run(data):
 if __name__ == '__main__':
     data = []
     data2 = []
-    with open("./data.txt", "r", encoding="utf-8") as f:
-        for line in f:
-            data.append(line)
+
+    print("A continuación ingrese una cadena. Presione 'Esc' al terminar.\n")
+    while True:
+        string = input()
+        if string == 'exit':
+            break
+        else:
+            data.append(string)
     
     # extract word for word
     string = ""
