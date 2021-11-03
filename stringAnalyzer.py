@@ -1,10 +1,40 @@
-# Analizador Léxico
-# by Louis Aguilar, Omar Flores, Elmer Jaén
+# Analizador Léxico by Elmer Jaén
+
+import matplotlib.pyplot as plt
+
+def table(list_show):
+    fig, ax = plt.subplots(1,1)
+    plt.rcParams.update({'font.size': 18}) #ch3eange font size
+    # row_labels is optional
+    row_labels=['Palabras reservadas:', 'Identificadores:', 'Operadores lógicos matemáticos:','Números positivos y negativos:']
+    ax.axis('tight')
+    ax.axis('off')
+    the_table = ax.table(cellText=list_show, rowLabels=row_labels, loc="center", cellLoc='center')
+    the_table.scale(2,3) #change table scale
+    for i in range(0, 4):
+        the_table[(i, -1)].set_facecolor("#56b5fd")
+    plt.show()
 
 reserved_keywords = ['If', 'Else', 'Declare', 'Dim', 'Integer']
-operators = ['+', '-' , '*', '/', '=', '==', 'and', 'or', 'not']
+operators = ['+', '-', '*', '/', '=', '==', 'and', 'or', 'not']
 
-def run(data):
+def show_results(data_list):
+    list_show = []
+    k = 0
+    for i in data_list:
+        string = ""
+        list_show.append([])
+        for j in i:
+            string += str(j) + ", "
+        string = string[:-2]
+        if list_show:
+            list_show[k].append(string)
+        else:
+            list_show.append(string)
+        k += 1
+    table(list_show)
+
+def classify(data):
     keywords_in_data = []
     operators_in_data = []
     numbers_in_data = []
@@ -45,19 +75,9 @@ def run(data):
 
     return keywords_in_data, IDENTIFIERS, operators_in_data, numbers_in_data
 
-if __name__ == '__main__':
-    data = []
+# extract word for word
+def extract_words(data):
     data2 = []
-
-    print("\nA continuación ingrese una cadena. Escriba 'exit' al terminar.\n")
-    while True:
-        string = input()
-        if string == 'exit':
-            break
-        else:
-            data.append(string+'\n')
-
-    # extract word for word
     string = ""
     data_size = len(data)-1
     for i, j in enumerate(data):
@@ -73,8 +93,20 @@ if __name__ == '__main__':
                 data2.append(string)
                 string = ""
 
-    tupla = run(data2)
-    print('\nPalabras reservadas: ', tupla[0])
-    print('\nIdentificadores: ', tupla[1])
-    print('\nOperadores lógicos matemáticos: ', tupla[2])
-    print(f'\nNúmeros enteros positivos y negativos: {tupla[3]}\n')
+    return data2
+
+def run():
+    data = []
+    print("\nA continuación ingrese una cadena. Escriba 'exit' al terminar.\n")
+    while True:
+        string = input()
+        if string == 'exit':
+            break
+        else:
+            data.append(string+'\n')
+
+    data_list = classify(extract_words(data))
+    show_results(data_list)
+  
+if __name__ == '__main__':
+  run()
